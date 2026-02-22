@@ -1,0 +1,25 @@
+# Build output
+extension/dist/
+extension/*.vsix
+
+# VSIX extraction artifacts
+\\[Content_Types\\].xml
+extension.vsixmanifest
+
+# Dependencies
+node_modules/
+package-lock.json
+
+# Old versions
+extension/auto-accept-agent-9.0.0/
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
