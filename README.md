@@ -1,4 +1,4 @@
-# Auto Accept Agent v11.5.0 Pro
+# Auto Accept Agent v11 Pro
 
 > Extension tự động chấp nhận code changes, terminal commands và completions cho Antigravity IDE — với cơ chế **Safety Check** chặn lệnh nguy hiểm.
 
@@ -120,13 +120,13 @@ extension/
 
 ```
 ┌─────────────────────────────────────────────┐
-│  Extension (extension.js)                    │
+│  Extension (extension.js)                   │
 │  ├─ Accept Commands (VS Code API)           │
 │  │   └─ Code diffs, completions, agent steps│
 │  ├─ Terminal Run (with Safety Check)        │
 │  │   ├─ CDP reads dialog text               │
 │  │   ├─ Check against banned patterns       │
-│  │   └─ Safe → Run | Banned → Block        │
+│  │   └─ Safe → Run | Banned → Block         │
 │  └─ CDP Handler (cdp-handler.js)            │
 │      ├─ Connect to IDE pages via port 9000  │
 │      ├─ Inject auto_accept.js script        │
