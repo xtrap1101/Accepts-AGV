@@ -53,13 +53,12 @@ let currentIDE = 'unknown'; // 'cursor' | 'antigravity'
 let globalContext;
 
 // Command-based auto-accept (IDE native)
+// NOTE: acceptCompletion & supercompleteAccept removed — they auto-accept Tab suggestions while typing (intrusive)
 const ACCEPT_COMMANDS_ANTIGRAVITY = [
     'antigravity.agent.acceptAgentStep',
     'antigravity.command.accept',
     'antigravity.prioritized.agentAcceptAllInFile',
     'antigravity.prioritized.agentAcceptFocusedHunk',
-    'antigravity.prioritized.supercompleteAccept',
-    'antigravity.acceptCompletion'
 ];
 
 // Terminal commands - fired separately with safety check

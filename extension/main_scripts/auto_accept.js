@@ -115,6 +115,38 @@
         });
     }
 
+    /**
+     * Check if a button is inside the Agent panel or a command/terminal dialog.
+     * Prevents auto-clicking buttons that appear in the code editor area.
+     */
+    function isInAgentZone(el) {
+        let node = el.parentElement;
+        for (let i = 0; i < 20 && node; i++) {
+            const cls = (node.className || '').toLowerCase();
+            const id = (node.id || '').toLowerCase();
+            const role = (node.getAttribute && node.getAttribute('role') || '').toLowerCase();
+
+            // Agent panel / chat panel selectors (Antigravity/Cursor/Windsurf)
+            if (
+                cls.includes('agent') ||
+                cls.includes('cascade') ||
+                cls.includes('chat') ||
+                cls.includes('terminal-command') ||
+                cls.includes('command-dialog') ||
+                cls.includes('quick-input') ||
+                cls.includes('notification') ||
+                id.includes('agent') ||
+                id.includes('chat') ||
+                role === 'dialog' ||
+                role === 'alertdialog'
+            ) {
+                return true;
+            }
+            node = node.parentElement;
+        }
+        return false;
+    }
+
     function clickAcceptButtons() {
         // Only query 'button' - covers 99% of cases, much lighter than 4 selectors
         const buttons = queryAll('button');
@@ -133,6 +165,12 @@
                             log(`[BLOCKED] Banned command detected! Skipping: "${cmdText.substring(0, 80)}"`);
                             continue;
                         }
+                    }
+                    // Run buttons in terminal dialogs → always in agent zone, skip zone check
+                } else {
+                    // Non-Run buttons: only click if inside agent/dialog zone
+                    if (!isInAgentZone(el)) {
+                        continue; // Skip buttons outside agent panel (e.g. editor inline suggestions)
                     }
                 }
 
